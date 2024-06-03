@@ -27,12 +27,17 @@ ts.goto(0, -200)
 # 함수 정의
 def forward():
     t.forward(10)
+    #print(t.pos()) # t.xcor(), t.ycor()
+    ang = te.towards(t.pos())
+    te.setheading(ang)
+    te.forward(8)
     if t.distance(ts) < 15:
         print('냠냠')
         s_x = random.randint(-100, 100)
         s_y = random.randint(-100, 100)
         ts.goto(s_x, s_y)
-    t.ontimer(forward, 500)
+    if t.distance(te) >= 12:
+        t.ontimer(forward, 500)
 
 
 def turn_right(): # 오른쪽
