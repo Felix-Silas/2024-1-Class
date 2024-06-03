@@ -14,22 +14,27 @@ def turn_down():
 
 def fire():
     # 50각형 그리면서 다시 돌아오게(마치 쏘는 것처럼)
+    ang = t.heading()
     n = 50
     for i in range(n):
         t.forward(25)
         t.right(360/n)
         if t.ycor() <= 0: # while 하면 위가 다 짧아짐
             a = t.xcor()
-            print(a) # x 좌표 출력
             # 성공 여부 판정 (땅에 박혔을 떄 x 좌표가 타겟을 기준으로 +-25 사이에 있으면 성공)
             if a  >= target - 25 and a <= target + 25:
                 t.color("blue")
                 t.write("Good!", False, "center", ("", 15))
+                break
             else:
                 t.color("red")
                 t.write("Bad!", False, "center", ("", 15))
-            break
+                break
 
+    t.color("black") # 거북이 색을 다시 검정으로
+    t.goto(-200, 10) # 거북이 위치를 처음 발사했던 곳으로 되돌리기
+    t.setheading(ang) # 각도도 처음 기억해 둔 각도로 되돌림 
+        
 # 땅 만들기
 t.goto(300, 0)
 t.goto(-300, 0)
@@ -48,6 +53,7 @@ t.goto(target+25, 2)
 t.up()
 t.color('black')
 t.goto(-200, 0)
+t.setheading(20)
 
 
 t.onkeypress(turn_up, 'Up')
