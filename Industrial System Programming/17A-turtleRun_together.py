@@ -3,7 +3,6 @@ import random
 
 t.bgcolor("orange")
 t.setup(500, 500)
-t.bgcolor("orange")
 t.shape("turtle")
 t.speed(0)
 t.up()
@@ -37,7 +36,7 @@ def forward():
         s_y = random.randint(-100, 100)
         ts.goto(s_x, s_y)
     if t.distance(te) >= 12:
-        t.ontimer(forward, 500)
+        t.ontimer(forward, 100)
 
 
 def turn_right(): # 오른쪽
@@ -53,9 +52,10 @@ def turn_down(): # 아래
     t.setheading(270)
 
 
-t.ontimer(forward, 500) # 0.5초
+# t.ontimer(forward, 500) # 0.5초
 t.onkeypress(turn_right, "Right")
 t.onkeypress(turn_up, "Up")
 t.onkeypress(turn_left, "Left")
 t.onkeypress(turn_down, "Down")
 t.listen()
+forward()
